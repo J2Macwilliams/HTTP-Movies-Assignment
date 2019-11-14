@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 
+
+
 import { Paper , TextField , Button , makeStyles} from '@material-ui/core';
 
 const initialMovie = {
@@ -25,13 +27,20 @@ const UpdateMovie = () => {
     const handleChange = event => {
         event.persist();
         setMovie({
+            ...movie,
             [event.target.name]: event.target.value
         })
     }
+
+    const handleSubmit = event => {
+        event.preventDefault();
+
+    }
+
     return (
         <div>
             <Paper className={classes.paper} >
-                <form>
+                <form onSubmit={handleSubmit}>
                 <TextField
                 className={classes.input}
                 id="outlined-basic"
