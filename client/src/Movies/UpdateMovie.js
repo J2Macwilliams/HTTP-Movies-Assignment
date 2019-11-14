@@ -1,6 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-function UpdateMovie() {
+import { Paper , TextField , makeStyles} from '@material-ui/come';
+
+const useStyles = makeStyles(() => ({
+  
+}));
+
+const UpdateMovie = () => {
+    const classes = useStyles();
     return (
         <div>
             
@@ -8,4 +15,4 @@ function UpdateMovie() {
     )
 }
 
-export default UpdateMovie
+export default UpdateMovie;
