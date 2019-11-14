@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 
 
 import { Paper , TextField , Button , makeStyles} from '@material-ui/core';
-import Axios from 'axios';
+import axios from 'axios';
 
 const initialMovie = {
 title: '',
@@ -35,7 +35,7 @@ const UpdateMovie = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        Axios.put(`http://localhost:3001/api/movies/:${movie.id}`, movie)
+        axios.put(`http://localhost:3001/api/movies/:${movie.id}`, movie)
         .then(response => console.log(response))
         .catch(error => console.log(error)
         );
