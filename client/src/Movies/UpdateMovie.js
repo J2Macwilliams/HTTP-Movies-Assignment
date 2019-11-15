@@ -17,6 +17,7 @@ const useStyles = makeStyles(() => ({
 const UpdateMovie = (props) => {
     const classes = useStyles();
     const [movie, setMovie] = useState(initialMovie)
+   
 
     const handleChange = event => {
         event.persist();
@@ -25,32 +26,33 @@ const UpdateMovie = (props) => {
             [event.target.name]: event.target.value
         })
     }
-    // useEffect(() => {
-    //     // only set the state if we have data from the api
-    //     // Solves refresh race condition
-    //     if (props.movies.length > 0) {
-    //       const newMovie = props.movies.find(
-    //         thing => `${thing.id}` === props.match.params.id
-    //       );
-    //       setMovie(newMovie);
-    //     }
-    //   }, [props.movies, props.match.params.id]);
+    useEffect(() => {
+        // only set the state if we have data from the api
+        // Solves refresh race condition
+        if (props.films.length > 0) {
+          const newFilm = props.films.find(
+            thing => `${thing.id}` === props.match.params.id
+          );
+          setMovie(newFilm);
+        }
+      }, [props.films, props.match.params.id]);
 
     const handleSubmit = event => {
         event.preventDefault();
-        axios.put(`http://localhost:5000/api/movies/${movie.id}`, movie)
+        axios
+        .put(`http://localhost:5000/api/movies/${movie.id}`, movie)
         .then(response => {
-            console.log(response)
-            props.updateItems(response);
+            
+            props.updateFilms(response.data);
             props.history.push('/');
         })
         .catch(error => console.log(error)
         );
     }
 
-    // if (props.movies.length === 0) {
-    //     return <h2>Loading data...</h2>;
-    //   }
+    if (props.films.length === 0) {
+        return <h2>Loading data...</h2>;
+      }
 
     return (
         <div>
@@ -96,7 +98,7 @@ const UpdateMovie = (props) => {
                 value={movie.stars}
                 onChange={handleChange}
                 />
-                <Button style={{background: 'green'}} >submit</Button>
+                <Button type="submit" style={{background: 'green'}} >submit</Button>
                 </form>
             </Paper>
         </div>
