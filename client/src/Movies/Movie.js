@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
 import MovieCard from "./MovieCard";
+
+import { Button } from '@material-ui/core';
+
 export default class Movie extends React.Component {
   constructor(props) {
     super(props);
@@ -42,6 +45,7 @@ export default class Movie extends React.Component {
         <div className="save-button" onClick={this.saveMovie}>
           Save
         </div>
+        <Button style={{background: 'orange', color: 'white'}} onClick={() => this.props.history.push(`/update-movie/${this.state.movie.id}`)}>Edit</Button>
       </div>
     );
   }
